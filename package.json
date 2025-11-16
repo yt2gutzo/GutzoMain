@@ -1,5 +1,6 @@
 {
-      "name": "FNL1_Gutzo Healthy Meals Marketplace (Copy)",
+      "name": "gutzo-healthy-meals-coimbatore",
+      "title": "Order Healthy Meals in Coimbatore",
       "version": "0.1.0",
       "private": true,
       "dependencies": {

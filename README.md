@@ -1,7 +1,8 @@
 
-  # FNL1_Gutzo Healthy Meals Marketplace (Copy)
 
-  This is a code bundle for FNL1_Gutzo Healthy Meals Marketplace (Copy). The original project is available at https://www.figma.com/design/VdwrBlG738QtEIN9aFcQ8Q/FNL1_Gutzo-Healthy-Meals-Marketplace--Copy-.
+  # Order Healthy Meals in Coimbatore
+
+  This repository contains the Gutzo marketplace frontend for ordering fresh, healthy meals and subscriptions in Coimbatore. The original project is available at https://www.figma.com/design/VdwrBlG738QtEIN9aFcQ8Q/FNL1_Gutzo-Healthy-Meals-Marketplace--Copy-.
 
   ## Running the code
 
