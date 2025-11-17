@@ -22,9 +22,18 @@ interface HeaderProps {
   onShowAddressList?: () => void;
   searchQuery?: string;
   onSearchChange?: (query: string) => void;
+  /**
+   * When true, hide product interactive UI (location, search, login, cart).
+   * Used on static pages (About, Terms, Privacy, Refund).
+   */
+  hideInteractive?: boolean;
+  /**
+   * Optional small page label to display next to the logo (e.g. "About Us").
+   */
+  pageLabel?: string;
 }
 
-export function Header({ onShowLogin, onLogout, onShowProfile, onShowCart, onShowAddressList, searchQuery = '', onSearchChange }: HeaderProps) {
+export function Header({ onShowLogin, onLogout, onShowProfile, onShowCart, onShowAddressList, searchQuery = '', onSearchChange, hideInteractive = false, pageLabel }: HeaderProps) {
   const { navigate } = useRouter();
   const { locationDisplay, isLoading, error, refreshLocation, isInCoimbatore } = useLocation();
   const { totalItems } = useCart();
@@ -89,63 +98,78 @@ export function Header({ onShowLogin, onLogout, onShowProfile, onShowCart, onSho
           </div>
 
           {/* Unified Location & Search Component - Minimal Design */}
-          <div className="hidden md:flex flex-1 items-center max-w-2xl">
-            <div className="flex flex-1 items-center border border-gray-200 rounded-xl bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              {/* Location Selector with Dropdown */}
-              <div className="relative min-w-[180px]">
-                <div 
-                  className="flex items-center gap-2 px-3 py-2.5 cursor-pointer hover:bg-gray-50/50 transition-colors"
-                  onClick={() => setShowLocationDropdown(!showLocationDropdown)}
-                  title="Click to select location"
-                >
-                  {isLoading ? (
-                    <Loader2 className="h-5 w-5 animate-spin text-gray-400 flex-shrink-0" />
-                  ) : error ? (
-                    <AlertCircle className="h-5 w-5 text-gutzo-primary flex-shrink-0" />
-                  ) : (
-                    <MapPin className="h-5 w-5 text-gutzo-primary flex-shrink-0" />
-                  )}
-                  <span className="truncate font-medium text-gray-900 whitespace-nowrap">
-                    {isLoading ? "Detecting..." : error ? "Location Error" : locationDisplay}
-                  </span>
-                  <ChevronDown className={`h-4 w-4 text-gray-500 flex-shrink-0 transition-transform ${showLocationDropdown ? 'rotate-180' : ''}`} />
-                </div>
-                
-                {/* Location Dropdown */}
-                <LocationDropdown
-                  isOpen={showLocationDropdown}
-                  onClose={() => setShowLocationDropdown(false)}
-                  onShowAddressList={onShowAddressList}
-                />
-              </div>
-
-              {/* Strong Vertical Divider */}
-              <div style={{ width: '1px', height: '32px', backgroundColor: '#E5E7EB', margin: '0 8px' }}></div>
-
-              {/* Search Input with Dropdown */}
-              <div className="flex-1 relative">
-                <div className="flex items-center pl-2 pr-4 py-2.5">
-                  <Search className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                  <input
-                    type="text"
-                    placeholder="Search for restaurant, salads or meals"
-                    value={searchQuery}
-                    onChange={(e) => onSearchChange?.(e.target.value)}
-                    onFocus={() => setShowSearchDropdown(true)}
-                    className="flex-1 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent ml-3"
-                  />
-                </div>
-                
-                {/* Search Dropdown */}
-                <SearchDropdown
-                  isOpen={showSearchDropdown}
-                  onClose={() => setShowSearchDropdown(false)}
-                  searchQuery={searchQuery}
-                  onSearchChange={onSearchChange || (() => {})}
-                />
+          {pageLabel ? (
+            // If a pageLabel is provided, show it next to the logo for static pages
+            <div className="flex-1 flex items-center">
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400">|</span>
+                <span className="text-gray-600">{pageLabel}</span>
               </div>
             </div>
-          </div>          {/* Right Actions */}
+          ) : null}
+
+          {!hideInteractive && (
+            <div className="hidden md:flex flex-1 items-center max-w-2xl">
+              <div className="flex flex-1 items-center border border-gray-200 rounded-xl bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+                {/* Location Selector with Dropdown */}
+                <div className="relative min-w-[180px]">
+                  <div 
+                    className="flex items-center gap-2 px-3 py-2.5 cursor-pointer hover:bg-gray-50/50 transition-colors"
+                    onClick={() => setShowLocationDropdown(!showLocationDropdown)}
+                    title="Click to select location"
+                  >
+                    {isLoading ? (
+                      <Loader2 className="h-5 w-5 animate-spin text-gray-400 flex-shrink-0" />
+                    ) : error ? (
+                      <AlertCircle className="h-5 w-5 text-gutzo-primary flex-shrink-0" />
+                    ) : (
+                      <MapPin className="h-5 w-5 text-gutzo-primary flex-shrink-0" />
+                    )}
+                    <span className="truncate font-medium text-gray-900 whitespace-nowrap">
+                      {isLoading ? "Detecting..." : error ? "Location Error" : locationDisplay}
+                    </span>
+                    <ChevronDown className={`h-4 w-4 text-gray-500 flex-shrink-0 transition-transform ${showLocationDropdown ? 'rotate-180' : ''}`} />
+                  </div>
+
+                  {/* Location Dropdown */}
+                  <LocationDropdown
+                    isOpen={showLocationDropdown}
+                    onClose={() => setShowLocationDropdown(false)}
+                    onShowAddressList={onShowAddressList}
+                  />
+                </div>
+
+                {/* Strong Vertical Divider */}
+                <div style={{ width: '1px', height: '32px', backgroundColor: '#E5E7EB', margin: '0 8px' }}></div>
+
+                {/* Search Input with Dropdown */}
+                <div className="flex-1 relative">
+                  <div className="flex items-center pl-2 pr-4 py-2.5">
+                    <Search className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                    <input
+                      type="text"
+                      placeholder="Search for restaurant, salads or meals"
+                      value={searchQuery}
+                      onChange={(e) => onSearchChange?.(e.target.value)}
+                      onFocus={() => setShowSearchDropdown(true)}
+                      className="flex-1 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent ml-3"
+                    />
+                  </div>
+
+                  {/* Search Dropdown */}
+                  <SearchDropdown
+                    isOpen={showSearchDropdown}
+                    onClose={() => setShowSearchDropdown(false)}
+                    searchQuery={searchQuery}
+                    onSearchChange={onSearchChange || (() => {})}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Right Actions */}
+          {!hideInteractive && (
           <div className="flex items-center gap-3">
             {/* Cart Button */}
             <button
@@ -205,9 +229,11 @@ export function Header({ onShowLogin, onLogout, onShowProfile, onShowCart, onSho
               </Button>
             )}
           </div>
+          )}
         </div>
 
         {/* Mobile: Location & Search Row - Minimal Zomato Style */}
+        {!hideInteractive && (
         <div className="md:hidden pb-3 pt-1">
           <div className="flex items-center justify-between px-1">
             {/* Location Section - Opens Bottom Sheet */}
@@ -238,6 +264,7 @@ export function Header({ onShowLogin, onLogout, onShowProfile, onShowCart, onSho
             </button>
           </div>
         </div>
+        )}
       </div>
     </header>
 

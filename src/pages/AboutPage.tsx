@@ -1,10 +1,7 @@
-import { useRouter } from "../components/Router";
 import { useEffect } from "react";
-import { ImageWithFallback } from "../components/common/ImageWithFallback";
+import { Header } from "../components/Header";
 
 export function AboutPage() {
-  const { navigate } = useRouter();
-
   // Ensure page starts at top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -12,31 +9,7 @@ export function AboutPage() {
 
   return (
     <div className="bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-6 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0">
-                <button
-                  type="button"
-                  aria-label="Go to homepage"
-                  onClick={() => navigate('/')}
-                  className="p-0 bg-transparent border-0 inline-flex items-center cursor-pointer hover:opacity-90 active:scale-95 transition-transform"
-                >
-                  <ImageWithFallback
-                    src="https://35-194-40-59.nip.io/service/storage/v1/object/public/Gutzo/GUTZO.svg"
-                    alt="Gutzo - Healthy Feels Good"
-                    className="h-32 w-auto sm:h-36 md:h-40"
-                  />
-                </button>
-              </div>
-              <span className="text-gray-400">|</span>
-              <span className="text-gray-600">About Us</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header pageLabel="About Us" hideInteractive />
 
       {/* Content - Minimal About */}
       <main className="max-w-3xl mx-auto px-6 sm:px-6 lg:px-8 pt-4 lg:pt-2 pb-4">

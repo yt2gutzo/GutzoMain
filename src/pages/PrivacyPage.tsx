@@ -1,12 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Eye, Lock, UserCheck, Database, Phone } from "lucide-react";
-import { ImageWithFallback } from "../components/common/ImageWithFallback";
-import { useRouter } from "../components/Router";
+import { Header } from "../components/Header";
 import { useEffect } from "react";
 
 export function PrivacyPage() {
-  const { navigate } = useRouter();
-
   // Ensure page starts at top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,31 +11,7 @@ export function PrivacyPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0">
-                <button
-                  type="button"
-                  aria-label="Go to homepage"
-                  onClick={() => navigate('/')}
-                  className="p-0 bg-transparent border-0 inline-flex items-center cursor-pointer hover:opacity-90 active:scale-95 transition-transform"
-                >
-                  <ImageWithFallback
-                    src="https://35-194-40-59.nip.io/service/storage/v1/object/public/Gutzo/GUTZO.svg"
-                    alt="Gutzo - Healthy Feels Good"
-                    className="h-32 w-auto sm:h-36 md:h-40"
-                  />
-                </button>
-              </div>
-              <span className="text-gray-400">|</span>
-              <span className="text-gray-600">Privacy Policy</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header pageLabel="Privacy Policy" hideInteractive />
 
       {/* Content */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
