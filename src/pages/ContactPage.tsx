@@ -11,8 +11,8 @@ export function ContactPage() {
   <div className="w-full max-w-md mx-auto lg:-mt-16">
           {/* Hero */}
             <section style={{ borderRadius: 12 }} className="mb-6 p-3 flex flex-col items-center text-center">
-            <h1 style={{ color: 'var(--color-gutzo-selected, var(--gutzo-selected))' }} className="text-2xl sm:text-3xl font-bold mb-0">Get in Touch</h1>
-              <p style={{ color: 'var(--muted-foreground)' }} className="text-sm max-w-md mb-0">We’re here to help with anything related to Gutzo.</p>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins' }}>Get in Touch</h1>
+              <p className="text-gray-600 text-lg max-w-md">We’re here to help with anything related to Gutzo.</p>
           </section>
 
           {/* Card */}

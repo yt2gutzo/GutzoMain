@@ -78,17 +78,19 @@ export function PrivacyPage() {
 
             <p><strong>Grievance Officer</strong></p>
 
-            <p>Insert Name of the Office:</p>
+            <p>Name: Mahelakshmi Sundaram</p>
 
-            <p>Designation:</p>
+            <p>Designation: Founder &amp; Proprietor</p>
 
-            <p>Insert Name and Address of the Company:</p>
+            <p>Company: Gutzo</p>
 
-            <p>Contact us:</p>
+            <p>Address: Coimbatore, Tamil Nadu, India</p>
 
-            <p>Phone: Time: Monday - Friday(9:00 - 18:00)</p>
+            <p>Email: developer.gutzo@gmail.com</p>
 
-            <p>Assistant:</p>
+            <p>Phone: 8903589068</p>
+
+            <p>Working Hours: Monday – Sunday (9:00 AM – 9:00 PM)</p>
           </div>
         </div>
 

@@ -64,13 +64,10 @@ export function AboutPage() {
 
           {/* Content (above background) */}
           <div className="relative z-10 px-4 py-6 lg:py-8">
-            <h1
-              className="text-2xl sm:text-3xl font-bold mb-0"
-              style={{ fontFamily: 'Poppins', color: 'var(--color-gutzo-selected, var(--gutzo-selected))' }}
-            >
+            <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins' }}>
               Who we are
             </h1>
-            <p className="text-sm text-gray-500 sm:text-gray-600 mb-2">We’re here to make healthy eating simple and local.</p>
+            <p className="text-gray-600 text-lg mb-4">We’re here to make healthy eating simple and local.</p>
 
             <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-5 sm:p-6 space-y-3 text-gray-700 w-full max-w-[600px] sm:max-w-[500px] lg:max-w-[600px] mx-auto mt-2">
               <div className="text-center leading-8">
